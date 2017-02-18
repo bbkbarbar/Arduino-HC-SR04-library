@@ -9,17 +9,18 @@ An arduino library to handle HC-SR04 distance sensor.
 #define TRIG_PIN    4
 #define ECHO_PIN    3
 
+HCSR04 mySensor;
 unsigned short distance;
 
 void setup() {         
 
-  sensor.init(TRIG_PIN, ECHO_PIN);
+  mySensor.init(TRIG_PIN, ECHO_PIN);
 
 }
 
 void loop(){
 
-  distance = sensor.readDisctanceInMm();
+  distance = mySensor.readDisctanceInMm();
 
   // Do something with measured distance value
 }
