@@ -64,3 +64,4 @@ unsigned short readDisctanceInCm();
 
 ### ToDo list:
 - [ ] try out the example with real hardwares.
+- [ ] implement "safety" functions e.g: isTooClose() and isTooFar()
