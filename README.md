@@ -38,3 +38,6 @@ unsigned short readDisctanceInCm();
  *      with mathematically corrent rounding).
  */
 ```
+
+### ToDo list:
+- [ ] try out the example with real hardwares.
