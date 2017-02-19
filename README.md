@@ -2,6 +2,8 @@
 
 An arduino library to handle HC-SR04 distance sensor.
 
+[Download](https://github.com/bbkbarbar/Arduino-HC-SR04-library/archive/master.zip)  as .zip file
+
 ### Basic useage
 ```
 #include <hcsr04.h>
