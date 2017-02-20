@@ -15,6 +15,8 @@ class HCSR04 {
 	private:
 		unsigned char myTrigPin;
 		unsigned char myEchoPin;
+		double myCalibrationMultiplier;
+		short myOffsetInMm;
 
 		long getDisctanceFromDurationInMm(long duration);
 
@@ -23,13 +25,22 @@ class HCSR04 {
 		/*
 		 * 	
 		 */
-	    void init(unsigned char trigPin, unsigned char echoPin);
-	    
+        void init(unsigned char trigPin, unsigned char echoPin);
+
+        void setCalibration(double calibrationMultiplier);
+
+        void setOffset(double offsetValueInMm);
+
 	    /*
 	     * Returns the measured disctance in mm.
 	     * (As mm is the default SI unit.)
 	     */
 	    unsigned short readDisctance();
+
+	    /*
+	     * Returns the measured disctance in mm.
+	     */
+	    unsigned short readDisctanceInMm();
 
 	    /*
 	     * Returns the measured disctance in cm.

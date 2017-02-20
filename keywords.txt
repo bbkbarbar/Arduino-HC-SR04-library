@@ -1,8 +1,11 @@
 HCSR04	KEYWORD1
 
 init	KEYWORD2
+setCalibration	KEYWORD2
+setOffset	KEYWORD2
 readDisctance	KEYWORD2
+readDisctanceInMm	KEYWORD2
 readDisctanceInCm	KEYWORD2
-getDisctanceFromDurationInCm	KEYWORD2
+getDisctanceFromDurationInMm	KEYWORD2
 
 BTN_UNDEFINED	KEYWORD3

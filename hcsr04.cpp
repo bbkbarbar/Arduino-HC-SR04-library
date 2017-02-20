@@ -2,8 +2,13 @@
 
 #include "hcsr04.h"
 
-#define CM_IN_MM                     10
-#define HALF_CM_IN_MM_FOR_ROUNDING    5
+#define CM_IN_MM                                          10
+#define HALF_CM_IN_MM_FOR_ROUNDING                         5
+
+#define NO_CALIBRATION_NEEDED                            1.0
+#define DEFAULT_CALIBRATION_MULTIPLIER NO_CALIBRATION_NEEDED
+#define NO_OFFSET                                          0
+#define DEFAULT_OFFSET                             NO_OFFSET
 
 void HCSR04::init(unsigned char trigPin, unsigned char echoPin){
 	myTrigPin = trigPin;
@@ -11,11 +16,33 @@ void HCSR04::init(unsigned char trigPin, unsigned char echoPin){
 
 	pinMode(myTrigPin, OUTPUT);
   	pinMode(myTrigPin, INPUT);
+
+  	myCalibrationMultiplier = DEFAULT_CALIBRATION_MULTIPLIER;
+  	myOffsetInMm = DEFAULT_OFFSET;
 }
 
+void HCSR04::setCalibration(double calibrationMultiplier){
+	myCalibrationMultiplier = calibrationMultiplier;
+}
+
+void HCSR04::setOffset(double offsetValueInMm){
+	myOffsetInMm = offsetValueInMm;
+}
+
+
 long HCSR04::getDisctanceFromDurationInMm(long duration){
-	long distanceInCm = (long)(((double)duration/2) / 2.91);
-	return distanceInCm;
+	
+	long distanceInMm = (long)(((double)duration/2) / 2.91);
+
+	if(myCalibrationMultiplier != NO_CALIBRATION_NEEDED){
+		distanceInMm = (long)(((double)distanceInMm)*myCalibrationMultiplier);
+	}
+
+	if(myOffsetInMm != NO_OFFSET){
+		distanceInMm += myOffsetInMm;
+	}
+
+	return distanceInMm;
 }
 
 unsigned short HCSR04::readDisctance(){
@@ -29,6 +56,10 @@ unsigned short HCSR04::readDisctance(){
 
 	duration = pulseIn(myEchoPin, HIGH);
 	return (unsigned short) getDisctanceFromDurationInMm(duration);
+}
+
+unsigned short HCSR04::readDisctanceInMm(){
+	return readDisctance();
 }
 
 unsigned short HCSR04::readDisctanceInCm(){
