@@ -10,6 +10,9 @@
 #define NO_OFFSET                                          0
 #define DEFAULT_OFFSET                             NO_OFFSET
 
+
+// Init
+
 void HCSR04::init(unsigned char trigPin, unsigned char echoPin){
 	myTrigPin = trigPin;
 	myEchoPin = echoPin;
@@ -21,14 +24,30 @@ void HCSR04::init(unsigned char trigPin, unsigned char echoPin){
   	myOffsetInMm = DEFAULT_OFFSET;
 }
 
+
+// Calibration
+
 void HCSR04::setCalibration(double calibrationMultiplier){
 	myCalibrationMultiplier = calibrationMultiplier;
 }
 
-void HCSR04::setOffset(double offsetValueInMm){
+double HCSR04::getCalibration(){
+	return myCalibrationMultiplier;
+}
+
+
+// Offset
+
+void HCSR04::setOffset(long offsetValueInMm){
 	myOffsetInMm = offsetValueInMm;
 }
 
+long HCSR04::getOffset(){
+	return myOffsetInMm;
+}
+
+
+// Calculation
 
 long HCSR04::getDisctanceFromDurationInMm(long duration){
 	
@@ -44,6 +63,9 @@ long HCSR04::getDisctanceFromDurationInMm(long duration){
 
 	return distanceInMm;
 }
+
+
+// Main functionality
 
 unsigned short HCSR04::readDisctance(){
 	long duration = 0;

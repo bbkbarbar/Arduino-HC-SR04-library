@@ -1,11 +1,18 @@
 HCSR04	KEYWORD1
 
+#public functions
 init	KEYWORD2
+
 setCalibration	KEYWORD2
 setOffset	KEYWORD2
+getCalibration	KEYWORD2
+getOffset	KEYWORD2
+
 readDisctance	KEYWORD2
 readDisctanceInMm	KEYWORD2
 readDisctanceInCm	KEYWORD2
+
+#private functions
 getDisctanceFromDurationInMm	KEYWORD2
 
 BTN_UNDEFINED	KEYWORD3

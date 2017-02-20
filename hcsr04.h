@@ -29,7 +29,12 @@ class HCSR04 {
 
         void setCalibration(double calibrationMultiplier);
 
-        void setOffset(double offsetValueInMm);
+        double getCalibration();
+
+
+        void setOffset(long offsetValueInMm);
+
+        long getOffset();
 
 	    /*
 	     * Returns the measured disctance in mm.
