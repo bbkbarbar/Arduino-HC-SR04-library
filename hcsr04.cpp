@@ -65,7 +65,7 @@ long HCSR04::getDisctanceFromDurationInMm(long duration){
 }
 
 
-// Main functionality
+// Main functionality - Distance measurement
 
 unsigned short HCSR04::readDisctance(){
     long duration = 0;

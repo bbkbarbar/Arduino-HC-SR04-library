@@ -18,15 +18,19 @@ class HCSR04 {
         double myCalibrationMultiplier;
         short myOffsetInMm;
 
+        /*
+         * Calculate the distance from duration
+         */
         long getDisctanceFromDurationInMm(long duration);
 
     public:
 
         /*
-         *
+         * Initialize HCSR04 instance
          */
         void init(unsigned char trigPin, unsigned char echoPin);
 
+        
         void setCalibration(double calibrationMultiplier);
         double getCalibration();
 
