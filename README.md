@@ -65,6 +65,45 @@ unsigned short readDisctanceInCm();
  */
 ```
 
+###### setCalibration
+```
+void setCalibration(double calibrationMultiplier);
+
+/*
+ *  Set calibration multiplier
+ *  Default is 1.0
+ */
+```
+###### getCalibration
+```
+double getCalibration();
+
+/*
+ *  Returns:
+ *      Current calibration multiplier.
+ */
+```
+
+###### setOffset
+```
+void setOffset(long offsetValueInMm);
+
+/*
+ *  Set offset for disctance measurement.
+ *  Default is 0 mm.
+ */
+```
+###### getOffset
+```
+long getOffset();
+
+/*
+ *  Returns:
+ *      Current ofset offset for disctance measurement.
+ */
+```
+
+
 ### ToDo list:
 - [ ] try out the example with real hardwares.
 - [ ] implement "safety" functions e.g: isTooClose() and isTooFar()
