@@ -4,28 +4,28 @@
 #define hcsr04_h
 
 #if defined(ARDUINO) && (ARDUINO >= 100)
-	#include <Arduino.h>
+    #include <Arduino.h>
 #else
-	#include <WProgram.h>
+    #include <WProgram.h>
 #endif
 
 
 class HCSR04 {
 
-	private:
-		unsigned char myTrigPin;
-		unsigned char myEchoPin;
-		double myCalibrationMultiplier;
-		short myOffsetInMm;
+    private:
+        unsigned char myTrigPin;
+        unsigned char myEchoPin;
+        double myCalibrationMultiplier;
+        short myOffsetInMm;
 
-		long getDisctanceFromDurationInMm(long duration);
+        long getDisctanceFromDurationInMm(long duration);
 
-	public:
+    public:
 
-				/*
-		 		 *
-		 		 */
-		 		void init(unsigned char trigPin, unsigned char echoPin);
+        /*
+         *
+         */
+        void init(unsigned char trigPin, unsigned char echoPin);
 
         void setCalibration(double calibrationMultiplier);
         double getCalibration();
@@ -33,21 +33,21 @@ class HCSR04 {
         void setOffset(long offsetValueInMm);
         long getOffset();
 
-		    /*
-		     * Returns the measured disctance in mm.
-		     * (As mm is the default SI unit.)
-		     */
-		    unsigned short readDisctance();
+        /*
+         * Returns the measured disctance in mm.
+         * (As mm is the default SI unit.)
+         */
+        unsigned short readDisctance();
 
-		    /*
-		     * Returns the measured disctance in mm.
-		     */
-		    unsigned short readDisctanceInMm();
+        /*
+         * Returns the measured disctance in mm.
+         */
+        unsigned short readDisctanceInMm();
 
-		    /*
-		     * Returns the measured disctance in cm.
-		     */
-		    unsigned short readDisctanceInCm();
+        /*
+         * Returns the measured disctance in cm.
+         */
+        unsigned short readDisctanceInCm();
 };
 
 #endif
