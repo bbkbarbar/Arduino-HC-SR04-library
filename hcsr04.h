@@ -52,6 +52,23 @@ class HCSR04 {
          * Returns the measured disctance in cm.
          */
         unsigned short readDisctanceInCm();
+
+
+        /*
+         * Returns the average of measured disctance in mm.
+         * (As mm is the default SI unit.)
+         * Parameter:
+         *     measurementCount - The count of measurements what will be used to calculate average
+         */
+        unsigned short readAvgDisctanceInMm(unsigned short measurementCount);
+
+        /*
+         * Returns the average of measured disctance in cm.
+         * Parameter:
+         *     measurementCount - The count of measurements what will be used to calculate average
+         */
+        unsigned short readAvgDisctanceInCm(unsigned short measurementCount);
+
 };
 
 #endif

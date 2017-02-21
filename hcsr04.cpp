@@ -9,6 +9,7 @@
 #define DEFAULT_CALIBRATION_MULTIPLIER NO_CALIBRATION_NEEDED
 #define NO_OFFSET                                          0
 #define DEFAULT_OFFSET                             NO_OFFSET
+#define DELAY_BETWEEN_AVG_MEASUREMENTS_IN_MS              10
 
 
 // Init
@@ -86,4 +87,29 @@ unsigned short HCSR04::readDisctanceInMm(){
 
 unsigned short HCSR04::readDisctanceInCm(){
     return ((readDisctance()+HALF_CM_IN_MM_FOR_ROUNDING) / CM_IN_MM);
+}
+
+
+// Main functionality - Distance measurement (avg of multiple results)
+
+unsigned short HCSR04::readAvgDisctanceInMm(unsigned short measurementCount){
+    if(measurementCount <= 1){
+        // don't have to calculate average of 1 value, 
+        // and we could not calculate average of 0 value
+        return readDisctance();
+    }
+
+    unsigned long sum = 0;
+    unsigned char i;
+    for(i=0; i<measurementCount; i++){
+        sum += readDisctance();
+        delay(DELAY_BETWEEN_AVG_MEASUREMENTS_IN_MS);
+    }
+    // calculate avg value with mathematically correct rounding..
+    unsigned short result = (((double)sum / measurementCount) + (double)0.5);
+    return result;
+}
+
+unsigned short HCSR04::readAvgDisctanceInCm(unsigned short measurementCount){
+    return ((readAvgDisctanceInMm(measurementCount)+HALF_CM_IN_MM_FOR_ROUNDING) / CM_IN_MM);
 }

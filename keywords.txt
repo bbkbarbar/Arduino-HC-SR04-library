@@ -12,6 +12,9 @@ readDisctance	KEYWORD2
 readDisctanceInMm	KEYWORD2
 readDisctanceInCm	KEYWORD2
 
+readAvgDisctanceInMm	KEYWORD2
+readAvgDisctanceInCm	KEYWORD2
+
 #private functions
 getDisctanceFromDurationInMm	KEYWORD2
 
