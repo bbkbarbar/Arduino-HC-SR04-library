@@ -125,3 +125,7 @@ unsigned short HCSR04::readAvgDisctanceInCm(unsigned short measurementCount){
 void HCSR04::setDelayBetweenAvgMeasurementsInMs(unsigned short delayInMs){
     delay_between_avg_measurements_in_ms = delayInMs;
 }
+
+unsigned short HCSR04::readAccurateDisctanceInMm(){
+    //TODO
+}

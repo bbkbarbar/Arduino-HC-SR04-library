@@ -87,12 +87,18 @@ class HCSR04 {
          */
         unsigned short readAvgDisctanceInCm(unsigned short measurementCount);
 
+
         /*
          * Returns the average of measured disctance in cm.
          * Parameter:
          *     delayInMs: 
          */
         void setDelayBetweenAvgMeasurementsInMs(unsigned short delayInMs);
+
+        /*
+         *
+         */
+        unsigned short readAccurateDisctanceInMm();
 
 };
 
