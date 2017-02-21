@@ -9,12 +9,18 @@
 #define DEFAULT_CALIBRATION_MULTIPLIER NO_CALIBRATION_NEEDED
 #define NO_OFFSET                                          0
 #define DEFAULT_OFFSET                             NO_OFFSET
-#define DELAY_BETWEEN_AVG_MEASUREMENTS_IN_MS              10
+#ifndef DEFAULT_DELAY_BETWEEN_AVG_MEASUREMENTS_IN_MS
+    #define DEFAULT_DELAY_BETWEEN_AVG_MEASUREMENTS_IN_MS  10
+#endif
 
 
 // Init
 
 void HCSR04::init(unsigned char trigPin, unsigned char echoPin){
+    init(trigPin, echoPin, DEFAULT_DELAY_BETWEEN_AVG_MEASUREMENTS_IN_MS);
+}
+
+void HCSR04::init(unsigned char trigPin, unsigned char echoPin, unsigned short delayForAvgMeasurement){
     myTrigPin = trigPin;
     myEchoPin = echoPin;
 
@@ -23,6 +29,8 @@ void HCSR04::init(unsigned char trigPin, unsigned char echoPin){
 
     myCalibrationMultiplier = DEFAULT_CALIBRATION_MULTIPLIER;
     myOffsetInMm = DEFAULT_OFFSET;
+
+    delay_between_avg_measurements_in_ms = delayForAvgMeasurement;
 }
 
 
@@ -103,7 +111,7 @@ unsigned short HCSR04::readAvgDisctanceInMm(unsigned short measurementCount){
     unsigned char i;
     for(i=0; i<measurementCount; i++){
         sum += readDisctance();
-        delay(DELAY_BETWEEN_AVG_MEASUREMENTS_IN_MS);
+        delay(delay_between_avg_measurements_in_ms);
     }
     // calculate avg value with mathematically correct rounding..
     unsigned short result = (((double)sum / measurementCount) + (double)0.5);
@@ -112,4 +120,8 @@ unsigned short HCSR04::readAvgDisctanceInMm(unsigned short measurementCount){
 
 unsigned short HCSR04::readAvgDisctanceInCm(unsigned short measurementCount){
     return ((readAvgDisctanceInMm(measurementCount)+HALF_CM_IN_MM_FOR_ROUNDING) / CM_IN_MM);
+}
+
+void HCSR04::setDelayBetweenAvgMeasurementsInMs(unsigned short delayInMs){
+    delay_between_avg_measurements_in_ms = delayInMs;
 }

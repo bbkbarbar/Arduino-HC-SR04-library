@@ -18,6 +18,8 @@ class HCSR04 {
         double myCalibrationMultiplier;
         short myOffsetInMm;
 
+        unsigned short delay_between_avg_measurements_in_ms;
+
         /*
          * Calculate the distance from duration
          */
@@ -29,6 +31,11 @@ class HCSR04 {
          * Initialize HCSR04 instance
          */
         void init(unsigned char trigPin, unsigned char echoPin);
+
+        /*
+         * Initialize HCSR04 instance
+         */
+        void init(unsigned char trigPin, unsigned char echoPin, unsigned short delayForAvgMeasurement);
 
         
         void setCalibration(double calibrationMultiplier);
@@ -68,6 +75,9 @@ class HCSR04 {
          *     measurementCount - The count of measurements what will be used to calculate average
          */
         unsigned short readAvgDisctanceInCm(unsigned short measurementCount);
+
+
+        void setDelayBetweenAvgMeasurementsInMs(unsigned short delayInMs);
 
 };
 
