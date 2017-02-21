@@ -36,8 +36,8 @@ void init(unsigned char trigPin, unsigned char echoPin);
 /*
  *  Initialite the ButtonHandler object
  *  Parameters:
- *    trigPin:       The pin of arduino what is connected to trig pin of HC-SR04 sensor
- *    echoPin:       The pin of arduino what is connected to echo pin of HC-SR04 sensor
+ *      trigPin:   The pin of arduino what is connected to trig pin of HC-SR04 sensor
+ *      echoPin:   The pin of arduino what is connected to echo pin of HC-SR04 sensor
  */
 ```
 
@@ -60,6 +60,36 @@ unsigned short readDisctanceInCm();
  *  Read disctance in cm
  *  Returns:
  *      the disctance in cm
+ *      (rounded value from mm value
+ *      with mathematically corrent rounding).
+ */
+```
+
+###### readAvgDisctanceInMm
+```
+unsigned short readAvgDisctanceInMm(unsigned short measurementCount);
+
+/*
+ *  Read disctance in mm by multiple measurement
+ *  and calculate average of results
+ *  Parameter:
+ *      measurementCount: The count of measurements what will be used to calculate average
+ *  Returns:
+ *      the average of multiple disctance measurement in mm.
+ */
+```
+
+###### readAvgDisctanceInCm
+```
+unsigned short readAvgDisctanceInCm(unsigned short measurementCount);
+
+/*
+ *  Read disctance in cm by multiple measurement
+ *  and calculate average of results
+ *  Parameter:
+ *      measurementCount: The count of measurements what will be used to calculate average
+ *  Returns:
+ *      the average of multiple disctance measurement in cm.
  *      (rounded value from mm value
  *      with mathematically corrent rounding).
  */
