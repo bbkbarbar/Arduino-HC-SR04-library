@@ -29,20 +29,31 @@ class HCSR04 {
 
         /*
          * Initialize HCSR04 instance
+         * Parameter:
+         *     trigPin:
+         *     echoPin:
          */
         void init(unsigned char trigPin, unsigned char echoPin);
 
         /*
          * Initialize HCSR04 instance
+         * Parameter:
+         *     trigPin:
+         *     echoPin:
+         *     delayForAvgMeasurement:
          */
         void init(unsigned char trigPin, unsigned char echoPin, unsigned short delayForAvgMeasurement);
 
         
         void setCalibration(double calibrationMultiplier);
+
         double getCalibration();
 
+
         void setOffset(long offsetValueInMm);
+
         long getOffset();
+
 
         /*
          * Returns the measured disctance in mm.
@@ -65,18 +76,22 @@ class HCSR04 {
          * Returns the average of measured disctance in mm.
          * (As mm is the default SI unit.)
          * Parameter:
-         *     measurementCount - The count of measurements what will be used to calculate average
+         *     measurementCount: The count of measurements what will be used to calculate average
          */
         unsigned short readAvgDisctanceInMm(unsigned short measurementCount);
 
         /*
          * Returns the average of measured disctance in cm.
          * Parameter:
-         *     measurementCount - The count of measurements what will be used to calculate average
+         *     measurementCount: The count of measurements what will be used to calculate average
          */
         unsigned short readAvgDisctanceInCm(unsigned short measurementCount);
 
-
+        /*
+         * Returns the average of measured disctance in cm.
+         * Parameter:
+         *     delayInMs: 
+         */
         void setDelayBetweenAvgMeasurementsInMs(unsigned short delayInMs);
 
 };
