@@ -105,5 +105,5 @@ long getOffset();
 
 
 ### ToDo list:
-- [ ] try out the example with real hardwares.
+- [x] try out the example with real hardwares.
 - [ ] implement "safety" functions e.g: isTooClose() and isTooFar()
