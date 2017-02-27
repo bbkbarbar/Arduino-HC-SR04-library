@@ -10,14 +10,14 @@
 // Simple software SPI test for ebay 128x64 oled.
 
 // pin definitions
+#define OLED_D0    8
+#define OLED_D1    7
+#define OLED_RST   6
 #define OLED_DC    5
 #define OLED_CS    4
-#define OLED_D0    9
-#define OLED_D1    8
-#define OLED_RST   7
 
-#define TRIG_PIN    3
-#define ECHO_PIN    2
+#define TRIG_PIN  A1
+#define ECHO_PIN  A0
 
 #include <SSD1306Ascii.h>
 #include <SSD1306AsciiSoftSpi.h>
@@ -30,9 +30,15 @@ HCSR04 sensor;
 void setup() {         
   oled.begin(&Adafruit128x64, OLED_CS, OLED_DC, OLED_D0, OLED_D1, OLED_RST);
   oled.setFont(Adafruit5x7);
-  oled.clear();  
+  oled.clear(); 
+  oled.set2X(); 
+
+  //double calibration = 2.1d;
+  //short offset = -40;
 
   sensor.init(TRIG_PIN, ECHO_PIN);
+  //sensor.setCalibration(calibration);
+  //sensor.setOffset(offset);
   
 }
 //------------------------------------------------------------------------------
@@ -41,7 +47,7 @@ long distance;
  
 void loop(){
 
-  distance = sensor.readDisctanceInCm();
+  distance = sensor.readAccurateDisctanceInCm();
   
   oled.clear();  
   oled.println("Tavolsag: ");

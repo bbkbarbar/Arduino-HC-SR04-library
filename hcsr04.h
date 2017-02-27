@@ -96,9 +96,16 @@ class HCSR04 {
         void setDelayBetweenAvgMeasurementsInMs(unsigned short delayInMs);
 
         /*
-         *
+         * Read distance 5 times, drop the minimum and the maximum values
+         * And return the average of the middle 3 measurement result in mm.
          */
         unsigned short readAccurateDisctanceInMm();
+
+        /*
+         * Read distance 5 times, drop the minimum and the maximum values
+         * And return the average of the middle 3 measurement result in cm.
+         */
+        unsigned short readAccurateDisctanceInCm();
 
 };
 

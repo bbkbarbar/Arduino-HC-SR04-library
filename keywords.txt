@@ -15,6 +15,9 @@ readDisctanceInCm	KEYWORD2
 readAvgDisctanceInMm	KEYWORD2
 readAvgDisctanceInCm	KEYWORD2
 
+readAccurateDisctanceInMm	KEYWORD2
+readAccurateDisctanceInCm	KEYWORD2
+
 setDelayBetweenAvgMeasurementsInMs	KEYWORD2
 
 #private functions

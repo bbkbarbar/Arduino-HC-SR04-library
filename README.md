@@ -133,6 +133,34 @@ long getOffset();
  */
 ```
 
+###### setDelayBetweenAvgMeasurementsInMs
+```
+void setDelayBetweenAvgMeasurementsInMs(unsigned short delayInMs);
+
+/*
+ * Returns the average of measured disctance in cm.
+ * Parameter:
+ *     delayInMs:
+ */
+```
+
+###### readAccurateDisctanceInMm
+```
+unsigned short readAccurateDisctanceInMm();
+/*
+ * Read distance 5 times, drop the minimum and the maximum values
+ * And return the average of the middle 3 measurement result in mm.
+ */
+```
+
+###### readAccurateDisctanceInCm
+```
+unsigned short readAccurateDisctanceInCm();
+/*
+ * Read distance 5 times, drop the minimum and the maximum values
+ * And return the average of the middle 3 measurement result in mm.
+ */
+```
 
 ### ToDo list:
 - [x] try out the example with real hardwares.

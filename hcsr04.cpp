@@ -12,6 +12,7 @@
 #ifndef DEFAULT_DELAY_BETWEEN_AVG_MEASUREMENTS_IN_MS
     #define DEFAULT_DELAY_BETWEEN_AVG_MEASUREMENTS_IN_MS  10
 #endif
+#define MEASUREMENT_COUNT_FOR_ACCURATE_DISTANCE            5
 
 
 // Init
@@ -127,5 +128,43 @@ void HCSR04::setDelayBetweenAvgMeasurementsInMs(unsigned short delayInMs){
 }
 
 unsigned short HCSR04::readAccurateDisctanceInMm(){
-    //TODO
+    unsigned short arraySize = MEASUREMENT_COUNT_FOR_ACCURATE_DISTANCE;
+    unsigned short array[arraySize];
+    
+    int i;
+    for(i=0; i<arraySize; i++){
+        array[i] = readDisctance();
+        delay(delay_between_avg_measurements_in_ms);
+    }
+
+    unsigned short idOfMin = 0;
+    for(i=1; i<arraySize; i++){
+        if(array[i] < array[idOfMin]){
+            idOfMin = i;
+        }
+    }
+
+    unsigned short idOfMax = 0;
+    for(i=1; i<arraySize; i++){
+        if(array[i] > array[idOfMax]){
+            idOfMax = i;
+        }
+    }
+
+    #define usedResultCount (arraySize-2)
+    double sum = 0;
+
+    unsigned short j = 0;
+    for(i=0; ((i < arraySize) && (j < usedResultCount)); i++){
+        if( (i != idOfMin) && (i != idOfMax) ){
+            sum += array[i];
+            j++;
+        }
+    }
+
+    return (unsigned short)((sum / usedResultCount)+0.5 );
+}
+
+unsigned short HCSR04::readAccurateDisctanceInCm(){
+    return ((readAccurateDisctanceInMm()+HALF_CM_IN_MM_FOR_ROUNDING) / CM_IN_MM);
 }
