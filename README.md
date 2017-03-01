@@ -2,7 +2,6 @@
 
 An arduino library to handle HC-SR04 distance sensor.
 
-[Download](https://github.com/bbkbarbar/Arduino-HC-SR04-library/archive/master.zip)  as .zip file
 
 ### Basic useage
 ```
@@ -27,6 +26,13 @@ void loop(){
   // Do something with measured distance value
 }
 ```
+
+### Installion
+
+- Clone or [download as a .zip file](https://github.com/bbkbarbar/Arduino-HC-SR04-library/archive/master.zip) and unpack this repository directly into  "libraries" folder of Arduino IDE (e.g.: *c:\Program Files (x86)\Arduino\libraries\* )
+- Restart Arduino IDE.
+- Now you can find and use this library from *Sketch > Include library > "Arduino-HC-SR04-library"*
+
 
 ### Functions
 ###### Initialize
